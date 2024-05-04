@@ -3,9 +3,8 @@ import System.{nanoTime}
 import java.awt.Color
 import scala.util.Random
 
-def SandColor = Color.decode("#dcb159")
-def SandColorHue = SandColor.getRGB
-def SandCell = Cell.Material(SandColorHue, 0, 0)
+def SandColorHue : Int = Color.decode("#dcb159").getRGB
+def BasicSandCell : Cell = Cell.Sand(SandColorHue, 0, 0)
 
 def toConsumer (c : (Boolean) => Unit) : Consumer[java.lang.Boolean] = c(_)
 def toBiConsumer (c : (Int, Int) => Unit) : BiConsumer[Integer, Integer] = c(_,_)
@@ -34,4 +33,4 @@ def brush(x : Int, y : Int, r : Int, p : Double) =
     if i >= 0 && i < wn && j >= 0 && j < hn
     if (i - x) * (i - x) + (j - y) * (j - y) <= r * r // this is the equation of a circle
     if Random.nextDouble < p
-  do grid(i)(j) = SandCell.vary
+  do grid(i)(j) = BasicSandCell.vary

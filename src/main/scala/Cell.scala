@@ -4,13 +4,13 @@ import scala.util.Random
 
 enum Cell:
   case Empty extends Cell
-  case Material(hue: Int, saturation: Int, brightness: Int) extends Cell
+  case Sand(hue: Int, saturation: Int, brightness: Int) extends Cell
   def toColor: Color = this match
     case Empty => Color.DARK_GRAY
-    case Material(hue, saturation, brightness) => Color(HSBtoRGB(hue, saturation, brightness))
+    case Sand(hue, saturation, brightness) => Color(HSBtoRGB(hue, saturation, brightness))
   def vary : Cell = this match
     case Empty => Empty
-    case Material(hue, saturation, brightness) =>Material(hue, Random.between(saturation - 20, saturation), Random.between(brightness - 10, brightness))
+    case Sand(hue, saturation, brightness) => Sand(hue, Random.between(saturation - 20, saturation), Random.between(brightness - 10, brightness))
 
 /* Sketch
 * <h1> In Java <h1>
@@ -23,6 +23,8 @@ enum Cell:
 * fractional number is then multiplied by 360 to produce the hue
 * angle in the HSB color model.
 * <p>
+
+From https://jason.today/falling-sand #Drawing pixels to the screen
 
 ```js
 function varyColor(p, color) {
