@@ -33,4 +33,19 @@ class UtilityTests extends munit.FunSuite {
   }
 
   // Note: Testing loop60fps might be challenging due to its infinite loop and dependency on system time.
+
+  test("brush should correctly update the grid with BasicSandCell") {
+    val x = 10
+    val y = 10
+    val r = 5
+    val p = 1 // for 100% probability
+    brush(x, y, r, p)
+    for
+      i <- x - r to x + r
+      j <- y - r to y + r
+      if i >= 0 && i < wn && j >= 0 && j < hn
+      if (i - x) * (i - x) + (j - y) * (j - y) <= r * r
+    do
+      assert(grid(i)(j).isInstanceOf[Cell.Sand])
+  }
 }
