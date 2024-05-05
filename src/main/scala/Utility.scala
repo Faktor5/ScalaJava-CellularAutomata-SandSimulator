@@ -34,3 +34,20 @@ def brush(x : Int, y : Int, r : Int, p : Double) =
     if (i - x) * (i - x) + (j - y) * (j - y) <= r * r // this is the equation of a circle
     if Random.nextDouble < p
   do grid(i)(j) = BasicSandCell.vary
+
+def clamp(value: Int, min: Int, max: Int): Int = {
+  if (value < min) min
+  else if (value > max) max
+  else value
+}
+
+def moveCell(fromX: Int, fromY: Int, toX: Int, toY: Int) = {
+  grid(toX)(toY) = grid(fromX)(fromY)
+  grid(fromX)(fromY) = Cell.Empty
+}
+
+def swapCell(x1: Int, y1: Int, x2: Int, y2: Int) = {
+  val temp = grid(x1)(y1)
+  grid(x1)(y1) = grid(x2)(y2)
+  grid(x2)(y2) = temp
+}

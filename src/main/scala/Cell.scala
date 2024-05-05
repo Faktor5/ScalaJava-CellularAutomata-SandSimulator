@@ -5,9 +5,11 @@ import scala.util.Random
 enum Cell:
   case Empty extends Cell
   case Sand(hue: Int, saturation: Int, brightness: Int) extends Cell
+  
   def toColor: Color = this match
     case Empty => Color.DARK_GRAY
     case Sand(hue, saturation, brightness) => Color(HSBtoRGB(hue, saturation, brightness))
+  
   def vary : Cell = this match
     case Empty => Empty
     case Sand(hue, saturation, brightness) => Sand(hue, Random.between(saturation - 20, saturation), Random.between(brightness - 10, brightness))

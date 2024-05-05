@@ -16,17 +16,7 @@ def clearer = (z : Boolean) => grid = Array.tabulate(wn, hn)((x, y) => Cell.Empt
 
 def update =
   for
-    yi <- hn - 2 to 0 by -1
+    // -1 instead of -2, instead put the condition in the updateCell function
+    yi <- hn - 1 to 0 by -1
     xi <- 0 until wn
-    if grid(xi)(yi) != Cell.Empty
-  do updateCell(xi, yi)
-
-def updateCell (x : Int, y : Int) =
-  if grid(x)(y+1) == Cell.Empty then
-    grid(x)(y+1) = grid(x)(y)
-    grid(x)(y) = Cell.Empty
-  else
-    val dx = Random.between(-1, 2)
-    if x + dx >= 0 && x + dx < wn && grid(x + dx)(y+1) == Cell.Empty then
-      grid(x + dx)(y+1) = grid(x)(y)
-      grid(x)(y) = Cell.Empty
+  do updateCell(xi, yi, grid(xi)(yi))
