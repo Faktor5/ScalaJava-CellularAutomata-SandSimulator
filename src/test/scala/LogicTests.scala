@@ -5,7 +5,7 @@ class LogicTests extends FunSuite {
     grid = Array.tabulate(5, 5)((x, y) => Cell.Empty)
     val x = 1
     val y = 2
-    grid(x)(y) = Cell.Sand(SandColorHue, 0, 0)
+    grid(x)(y) = BasicSandCell
     grid(x)(y+1) = Cell.Empty
     updateCell(x, y, grid(x)(y))
     assertEquals(grid(x)(y), Cell.Empty)

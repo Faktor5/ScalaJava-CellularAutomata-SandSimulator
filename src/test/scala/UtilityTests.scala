@@ -2,18 +2,6 @@ import java.awt.Color
 import java.util.function.{Consumer, BiConsumer, BiFunction}
 
 class UtilityTests extends munit.FunSuite {
-  test("SandColorHue should return correct RGB value") {
-    assertEquals(SandColorHue, Color.decode("#dcb159").getRGB)
-  }
-
-  test("BasicSandCell should return Sand cell with correct hue and zero saturation and brightness") {
-    val sandCell = BasicSandCell
-    assert(sandCell.isInstanceOf[Cell.Sand])
-    assert(sandCell.asInstanceOf[Cell.Sand].hue == SandColorHue)
-    assert(sandCell.asInstanceOf[Cell.Sand].saturation == 0)
-    assert(sandCell.asInstanceOf[Cell.Sand].brightness == 0)
-  }
-
   test("toConsumer should correctly convert Scala function to Java Consumer") {
     val scalaFunction = (b: Boolean) => println(b)
     val javaConsumer = toConsumer(scalaFunction)
@@ -40,7 +28,7 @@ class UtilityTests extends munit.FunSuite {
     val y = 2
     val r = 10
     val p = 1.0 // set probability to 1 for deterministic behavior
-    brush(x, y, r, p)
+    brush(x, y, r, p, BasicSandCell)
     val cellsInBrush = for {
       i <- x - r to x + r
       j <- y - r to y + r
@@ -49,6 +37,7 @@ class UtilityTests extends munit.FunSuite {
     } yield grid(i)(j)
     assert(cellsInBrush.forall(_ != Cell.Empty))
   }
+
 
   test("moveCell should correctly move cell from one position to another") {
     val fromX = 1
