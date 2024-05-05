@@ -38,7 +38,7 @@ public class Buttons extends JPanel {
     add(woodBtn);
 
     // Create Clear button
-    var clearBtn = new JButton("Clear");
+    JButton clearBtn = new JButton("Clear");
     clearBtn.setBackground(new Color(192, 192, 192));
     woodBtn.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     clearBtn.addActionListener(e -> clearer.accept(e.getActionCommand().equals("Clear")));
@@ -46,15 +46,6 @@ public class Buttons extends JPanel {
 
     setPreferredSize(new Dimension(w, 50)); // Set preferred size
     sandBtn.setSelected(true); // Set selected
-  }
-
-  // start a Virtuel thread
-  public void start() {
-    Thread.startVirtualThread(this::act);
-  }
-
-  public void act() {
-    System.out.println("Concurrency");
   }
 
   @Override
