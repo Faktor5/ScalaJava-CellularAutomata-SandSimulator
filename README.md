@@ -10,3 +10,12 @@ For more information on the sbt-dotty plugin, see the
 ## Inspiration
 
 - [Making a falling sand simulator](https://jason.today/falling-sand)
+
+## naive color approach
+
+```scala
+def SandColorHue : Int = Color.decode("#dcb159").getRGB
+def BasicSandCell : Cell = Cell.Sand(SandColorHue, 0, 0)
+def WoodColorHue : Int = Color.decode("#8b4513").getRGB
+def BasicWoodCell : Cell = Cell.Wood(WoodColorHue, 0, 0, false, 0, 0)
+```

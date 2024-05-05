@@ -4,8 +4,8 @@ import scala.util.Random
 
 enum Cell:
   case Empty extends Cell
-  case Sand(hue: Int, saturation: Int, brightness: Int) extends Cell
-  case Wood(hue: Int, saturation: Int, brightness: Int, isLit : Boolean, glow: Int, fuel : Int) extends Cell
+  case Sand(hue: Float, saturation: Float, brightness: Float) extends Cell
+  case Wood(hue: Float, saturation: Float, brightness: Float, isLit : Boolean, glow: Float, fuel : Int) extends Cell
   
   def toColor: Color = this match
     case Empty => Color.DARK_GRAY
@@ -17,7 +17,7 @@ enum Cell:
   def vary : Cell = this match
     case Empty => Empty
     case Sand(hue, saturation, brightness) => Sand(hue, Random.between(saturation - 20, saturation), Random.between(brightness - 10, brightness))
-    case Wood(hue, saturation, brightness, isLit, glow, fuel) => Wood(hue, Random.between(saturation - 20, saturation), Random.between(brightness - 10, brightness), isLit, glow, fuel)
+    case Wood(hue, saturation, brightness, isLit, glow, fuel) => Wood(hue, saturation, brightness, isLit, Random.between(-6, 10), Random.between(100, 300))
 
 /* Sketch
 * <h1> In Java <h1>

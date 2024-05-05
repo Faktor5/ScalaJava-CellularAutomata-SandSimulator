@@ -1,5 +1,10 @@
 import scala.util.Random
 
+def drawCell(x: Int, y: Int) = choice match
+  case Cell.Empty => ()
+  case Cell.Sand(_, _, _) => brush(x, y, 10, .2, BasicSandCell)
+  case Cell.Wood(_,_,_,_,_,_) => brush(x, y, 5, .8, BasicWoodCell)
+
 def updateCell(x: Int, y: Int, z: Cell) = z match
   case Cell.Empty => ()
   case Cell.Sand(_, _, _) =>
@@ -13,3 +18,4 @@ def updateCell(x: Int, y: Int, z: Cell) = z match
           then
             grid(x + dx)(y + 1) = grid(x)(y)
             grid(x)(y) = Cell.Empty
+  case Cell.Wood(_,_,_,_,_,_) => ()
