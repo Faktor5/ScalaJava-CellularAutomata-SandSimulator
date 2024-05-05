@@ -5,6 +5,8 @@ import scala.util.Random
 
 def SandColorHue : Int = Color.decode("#dcb159").getRGB
 def BasicSandCell : Cell = Cell.Sand(SandColorHue, 0, 0)
+def WoodColorHue : Int = Color.decode("#8b4513").getRGB
+def BasicWoodCell : Cell = Cell.Wood(WoodColorHue, 0, 0, false, Random.between(-6, 10), Random.between(100, 300))
 
 def toConsumer (c : (Boolean) => Unit) : Consumer[java.lang.Boolean] = c(_)
 def toBiConsumer (c : (Int, Int) => Unit) : BiConsumer[Integer, Integer] = c(_,_)
@@ -13,6 +15,8 @@ def toBiFunction (f : (Int, Int) => Cell) : BiFunction[Integer, Integer, Color] 
 def _setter = toBiConsumer(setter)
 def _getter = toBiFunction(getter)
 def _clearer = toConsumer(clearer)
+def _sandChoice = toConsumer(sandChoice)
+def _woodChoice = toConsumer(woodChoice)
 
 def loop60fps = (action : () => Unit) =>
   var lastTime = nanoTime

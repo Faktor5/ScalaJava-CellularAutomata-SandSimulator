@@ -5,14 +5,19 @@ import scala.util.Random
 enum Cell:
   case Empty extends Cell
   case Sand(hue: Int, saturation: Int, brightness: Int) extends Cell
+  case Wood(hue: Int, saturation: Int, brightness: Int, isLit : Boolean, glow: Int, fuel : Int) extends Cell
   
   def toColor: Color = this match
     case Empty => Color.DARK_GRAY
     case Sand(hue, saturation, brightness) => Color(HSBtoRGB(hue, saturation, brightness))
+    case Wood(hue, saturation, brightness, isLit, glow, fuel) =>
+      if isLit then Color(HSBtoRGB(hue, saturation, brightness + glow))
+      else Color(HSBtoRGB(hue, saturation, brightness))
   
   def vary : Cell = this match
     case Empty => Empty
     case Sand(hue, saturation, brightness) => Sand(hue, Random.between(saturation - 20, saturation), Random.between(brightness - 10, brightness))
+    case Wood(hue, saturation, brightness, isLit, glow, fuel) => Wood(hue, Random.between(saturation - 20, saturation), Random.between(brightness - 10, brightness), isLit, glow, fuel)
 
 /* Sketch
 * <h1> In Java <h1>
