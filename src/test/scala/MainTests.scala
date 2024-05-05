@@ -7,7 +7,10 @@ class MainTests extends FunSuite {
     val x = 1
     val y = 2
     grid(x)(y) = Cell.Sand(SandColorHue, 0, 0)
-    assert(getter(x, y).isInstanceOf[Cell.Sand])
+    assert(getter(x, y) match
+      case _ : Cell.Sand => true
+      case _ => false
+    )
   }
 
   test("setter should set the correct cell") {
