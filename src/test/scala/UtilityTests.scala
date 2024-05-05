@@ -35,6 +35,7 @@ class UtilityTests extends munit.FunSuite {
   // Note: Testing loop60fps might be challenging due to its infinite loop and dependency on system time.
 
   test("brush should set cells within radius to non-empty") {
+    grid = Array.fill(wn, hn)(Cell.Empty)
     val x = 1
     val y = 2
     val r = 10
