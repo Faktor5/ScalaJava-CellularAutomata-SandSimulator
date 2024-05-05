@@ -16,8 +16,19 @@ enum Cell:
   
   def vary : Cell = this match
     case Empty => Empty
-    case Sand(hue, saturation, brightness) => Sand(hue, Random.between(saturation - 20, saturation), Random.between(brightness - 10, brightness))
-    case Wood(hue, saturation, brightness, isLit, glow, fuel) => Wood(hue, saturation, brightness, isLit, Random.between(-6, 10), Random.between(100, 300))
+    case Sand(hue, saturation, brightness) => Sand(
+      hue,
+      clamp(Random.between(saturation - 0.2f, saturation), 0.0f, 1.0f),
+      clamp(Random.between(brightness - 0.1f, brightness), 0.0f, 1.0f)
+    )
+    case Wood(hue, saturation, brightness, isLit, glow, fuel) => Wood(
+      hue,
+      clamp(Random.between(saturation - 0.2f, saturation), 0.0f, 1.0f),
+      clamp(Random.between(brightness - 0.2f, brightness + 0.1f), 0.0f, 1.0f),
+      isLit,
+      Random.between(-6, 10),
+      Random.between(100, 300)
+    )
 
 /* Sketch
 * <h1> In Java <h1>

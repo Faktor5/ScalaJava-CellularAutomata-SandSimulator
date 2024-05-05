@@ -58,6 +58,12 @@ def clamp(value: Int, min: Int, max: Int): Int = {
   else value
 }
 
+def clamp(value: Float, min: Float, max: Float): Float = {
+  if (value < min) min
+  else if (value > max) max
+  else value
+}
+
 def moveCell(fromX: Int, fromY: Int, toX: Int, toY: Int) = {
   grid(toX)(toY) = grid(fromX)(fromY)
   grid(fromX)(fromY) = Cell.Empty
